@@ -195,7 +195,7 @@ namespace Image_Viewer
             {
                 if (!isFullscreen)
                 {
-                    // old_size = pictureBox.Bounds;
+                    old_size = pictureBox.Bounds;
                     this.FormBorderStyle = FormBorderStyle.None;
                     this.WindowState = FormWindowState.Maximized;
                     pictureBox.Dock = DockStyle.Fill;
