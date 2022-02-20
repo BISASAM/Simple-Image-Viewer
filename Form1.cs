@@ -15,10 +15,11 @@ namespace Image_Viewer
 {
     public partial class Form1 : Form
     {
-        string ver = "v0.34";
+        Rectangle old_size;
+        FormWindowState old_windowState;
+        string ver = "v0.40";
         bool isFullscreen = false;
         int next_pic = -1;
-        Rectangle old_size;
         Stack history_st = new Stack();
         IEnumerable<string> filepaths_pics;
         Random rnd = new Random();
@@ -194,22 +195,25 @@ namespace Image_Viewer
             if (pictureBox.Image != null)
             {
                 if (!isFullscreen)
-                {
-                    old_size = pictureBox.Bounds;
-                    this.FormBorderStyle = FormBorderStyle.None;
+                {   // go Fullscreen
+                    //KEEP THIS ORDER!!
+                    old_windowState = this.WindowState;
                     this.WindowState = FormWindowState.Maximized;
+                    this.FormBorderStyle = FormBorderStyle.None;
+                    old_size = pictureBox.Bounds;
                     pictureBox.Dock = DockStyle.Fill;
-                    pictureBox.BackColor = Color.Black;
+                    //pictureBox.BackColor = Color.Black;
                     isFullscreen = true;
                 }
                 else
-                {
-                    this.WindowState = FormWindowState.Normal;
-                    this.FormBorderStyle = FormBorderStyle.Sizable;
+                {   // go Normal
+                    //KEEP THIS ORDER!!
                     pictureBox.Dock = DockStyle.None;
-                    pictureBox.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left);
                     pictureBox.Bounds = old_size;
-                    pictureBox.BackColor = Color.FromArgb(34,34,34);
+                    pictureBox.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
+                    this.FormBorderStyle = FormBorderStyle.Sizable;
+                    this.WindowState = old_windowState;
+                    //pictureBox.BackColor = Color.FromArgb(34,34,34);
                     isFullscreen = false;
                 }
             }
