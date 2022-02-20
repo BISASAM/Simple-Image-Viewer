@@ -15,7 +15,7 @@ namespace Image_Viewer
 {
     public partial class Form1 : Form
     {
-        string ver = "v0.50";
+        string ver = "v0.51";
         Rectangle old_size;
         FormWindowState old_windowState;
         IEnumerable<string> filepaths_pics;

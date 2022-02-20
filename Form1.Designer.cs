@@ -336,11 +336,13 @@
             // 
             // btn_pause
             // 
+            this.btn_pause.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_pause.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
             this.btn_pause.BackgroundImage = global::Image_Viewer.Properties.Resources.pause_logo;
             this.btn_pause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btn_pause.Enabled = false;
             this.btn_pause.FlatAppearance.BorderSize = 0;
+            this.btn_pause.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.btn_pause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_pause.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_pause.ForeColor = System.Drawing.Color.White;
