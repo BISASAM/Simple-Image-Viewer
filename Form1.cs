@@ -15,7 +15,7 @@ namespace Image_Viewer
 {
     public partial class Form1 : Form
     {
-        string ver = "v0.33";
+        string ver = "v0.34";
         bool isFullscreen = false;
         int next_pic = -1;
         Rectangle old_size;
@@ -219,11 +219,7 @@ namespace Image_Viewer
         {              
             if (e.KeyCode == Keys.Escape && isFullscreen)
             {
-                pictureBox.Dock = DockStyle.None;
-                pictureBox.BackColor = SystemColors.Control;
-                this.FormBorderStyle = FormBorderStyle.Sizable;
-                this.WindowState = FormWindowState.Normal;
-                isFullscreen = false;
+                pictureBox_DoubleClick(sender, e);
             }
         }
 
