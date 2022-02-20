@@ -22,6 +22,7 @@ namespace Image_Viewer
         Stack history_st = new Stack();
         Random rnd = new Random();
         bool isFullscreen = false;
+        bool isPause = false;
         int next_pic = -1;
 
         public Form1()
@@ -68,9 +69,12 @@ namespace Image_Viewer
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             // deaktiviert Pfeilnavigation auf Form, außer in Textboxen
+            // deaktiviert Leertaste auf Form (genutzt um checkboxen zu tooglen)
             // Nutzt Links- Rechtspfeil um durch Bider zu navigieren
+            // Nutzt Leertaste um Play/Pause to tooglen
             if ((keyData == Keys.Right) || (keyData == Keys.Left) ||
-                (keyData == Keys.Up) || (keyData == Keys.Down))
+                (keyData == Keys.Up) || (keyData == Keys.Down)
+                || keyData == Keys.Space)
             {
                 if (tb_path.Focused || tb_filter.Focused)
                 {
@@ -91,6 +95,9 @@ namespace Image_Viewer
                             break;
                         case Keys.Down:
                             rotate_img(false);
+                            break;
+                        case Keys.Space:
+                            btn_pause_Click(null, null);
                             break;
                     }
                     return true;
@@ -220,7 +227,7 @@ namespace Image_Viewer
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {              
+        {
             if (e.KeyCode == Keys.Escape && isFullscreen)
             {
                 pictureBox_DoubleClick(sender, e);
@@ -235,14 +242,36 @@ namespace Image_Viewer
         private void cb_diashow_CheckedChanged(object sender, EventArgs e)
         {
             nud_diaShowTime.Enabled = cb_diashow.Checked;
+            btn_pause.Enabled = cb_diashow.Checked;
             timer1.Interval = (int)nud_diaShowTime.Value*1000;
             timer1.Enabled = cb_diashow.Checked;
+            if (!cb_diashow.Checked) {
+                isPause = false;
+                btn_pause.BackgroundImage = Image_Viewer.Properties.Resources.pause_logo;
+            }
+        }
+
+        private void btn_pause_Click(object sender, EventArgs e)
+        {
+            if (cb_diashow.Checked)
+            {
+                isPause = !isPause;
+                btn_pause.BackgroundImage = isPause ? Image_Viewer.Properties.Resources.play_logo : Image_Viewer.Properties.Resources.pause_logo;
+                if (isPause)
+                {
+                    timer1.Stop();
+                }
+                else { timer1.Start(); }
+            }
         }
 
         private void nud_diaShowTime_ValueChanged(object sender, EventArgs e)
         {
             timer1.Interval = (int)nud_diaShowTime.Value * 1000;
         }
+
+
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -271,10 +300,11 @@ namespace Image_Viewer
 
         private void btn_info_Click(object sender, EventArgs e)
         {
-            string anleitung = $"\n\nKann sehr große Ordner (~200GB) verarbeiten und Unterordner einbinden\n\nUrsprünglicher Usecase: Zufällig Bilder aus einem großen Ordner mit vielen Unterordnern in Diashow anzeigen \n\ncwd trägt das aktuelle Verzeichnis ein.\n\nFilter enthält Dateiendungen.\nMehrere Filter mit Semikolon trennen\n\nBild-Datei lässt sich in Windows auch durch \"Öffnen mit...\" öffnen\n\n\nTastenbelegung:\n\nPfeiltasten Links, Rechts: \tDurch die Bilder skippen\nPfeiltasten Hoch, Runter: \tDrehung Rechts, Links\nDoppelklick auf Bild: \tVollbild ein/aus\n\n\n\n{ver}\nVinc";
+            string anleitung = $"\n\nKann sehr große Ordner (~200GB) verarbeiten und Unterordner einbinden\n\nUrsprünglicher Usecase: Zufällig Bilder aus einem großen Ordner mit vielen Unterordnern in Diashow anzeigen \n\ncwd trägt das aktuelle Verzeichnis ein.\n\nFilter enthält Dateiendungen.\nMehrere Filter mit Semikolon trennen\n\nBild-Datei lässt sich in Windows auch durch \"Öffnen mit...\" öffnen\n\n\nTastenbelegung:\n\nPfeiltasten Links, Rechts: \tDurch die Bilder skippen\nPfeiltasten Hoch, Runter: \tDrehung Rechts, Links\nDoppelklick auf Bild: \tVollbild ein/aus\n Leertaste\tDiashow anhalten/fortsetzen\n\n\n\n{ver}\nVinc";
 
             MessageBox.Show(anleitung, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        
     }
 }

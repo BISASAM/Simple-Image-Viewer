@@ -49,6 +49,7 @@
             this.btn_rotate = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_cwd = new System.Windows.Forms.Button();
+            this.btn_pause = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_diaShowTime)).BeginInit();
             this.SuspendLayout();
@@ -333,6 +334,23 @@
             this.btn_cwd.UseVisualStyleBackColor = false;
             this.btn_cwd.Click += new System.EventHandler(this.btn_cwd_Click);
             // 
+            // btn_pause
+            // 
+            this.btn_pause.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btn_pause.BackgroundImage = global::Image_Viewer.Properties.Resources.pause_logo;
+            this.btn_pause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_pause.Enabled = false;
+            this.btn_pause.FlatAppearance.BorderSize = 0;
+            this.btn_pause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_pause.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_pause.ForeColor = System.Drawing.Color.White;
+            this.btn_pause.Location = new System.Drawing.Point(523, 552);
+            this.btn_pause.Name = "btn_pause";
+            this.btn_pause.Size = new System.Drawing.Size(39, 34);
+            this.btn_pause.TabIndex = 25;
+            this.btn_pause.UseVisualStyleBackColor = false;
+            this.btn_pause.Click += new System.EventHandler(this.btn_pause_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -340,6 +358,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(784, 659);
+            this.Controls.Add(this.btn_pause);
             this.Controls.Add(this.btn_cwd);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.label2);
@@ -393,6 +412,7 @@
         private System.Windows.Forms.Button btn_rotate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_cwd;
+        private System.Windows.Forms.Button btn_pause;
     }
 }
 
