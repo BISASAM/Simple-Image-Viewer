@@ -15,14 +15,14 @@ namespace Image_Viewer
 {
     public partial class Form1 : Form
     {
+        string ver = "v0.41";
         Rectangle old_size;
         FormWindowState old_windowState;
-        string ver = "v0.40";
+        IEnumerable<string> filepaths_pics;
+        Stack history_st = new Stack();
+        Random rnd = new Random();
         bool isFullscreen = false;
         int next_pic = -1;
-        Stack history_st = new Stack();
-        IEnumerable<string> filepaths_pics;
-        Random rnd = new Random();
 
         public Form1()
         {
@@ -202,7 +202,7 @@ namespace Image_Viewer
                     this.FormBorderStyle = FormBorderStyle.None;
                     old_size = pictureBox.Bounds;
                     pictureBox.Dock = DockStyle.Fill;
-                    //pictureBox.BackColor = Color.Black;
+                    pictureBox.BackColor = Color.Black;
                     isFullscreen = true;
                 }
                 else
@@ -213,7 +213,7 @@ namespace Image_Viewer
                     pictureBox.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
                     this.FormBorderStyle = FormBorderStyle.Sizable;
                     this.WindowState = old_windowState;
-                    //pictureBox.BackColor = Color.FromArgb(34,34,34);
+                    pictureBox.BackColor = Color.FromArgb(34,34,34);
                     isFullscreen = false;
                 }
             }
