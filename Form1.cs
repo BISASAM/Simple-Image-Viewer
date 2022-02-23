@@ -15,7 +15,7 @@ namespace Image_Viewer
 {
     public partial class Form1 : Form
     {
-        string ver = "v0.51";
+        string ver = "v0.52";
         Rectangle old_size;
         FormWindowState old_windowState;
         IEnumerable<string> filepaths_pics;
@@ -141,7 +141,7 @@ namespace Image_Viewer
         private void btn_next_Click(object sender, EventArgs e)
         {   
             
-            if (cb_diashow.Checked)
+            if (cb_diashow.Checked && !isPause)
             {
                 timer1.Stop();
                 timer1.Start();
@@ -153,7 +153,7 @@ namespace Image_Viewer
 
         private void btn_back_Click(object sender, EventArgs e)
         {
-            if (cb_diashow.Checked)
+            if (cb_diashow.Checked && !isPause)
             {
                 timer1.Stop();
                 timer1.Start();
