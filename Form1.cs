@@ -15,7 +15,7 @@ namespace Image_Viewer
 {
     public partial class Form1 : Form
     {
-        string ver = "v0.61";
+        string ver = "v0.62";
         Rectangle old_size;
         FormWindowState old_windowState;
         IEnumerable<string> filepaths_pics;
@@ -55,8 +55,8 @@ namespace Image_Viewer
                 //make pictureBox show pic-file
                 try
                 {
-                    pictureBox.ImageLocation = args[1];
                     this.Text = "Simple Image Viewer - " + args[1];
+                    pictureBox.ImageLocation = args[1];
                 }
                 catch (Exception ex)
                 {
@@ -171,8 +171,8 @@ namespace Image_Viewer
                 next_pic = cb_shuffle.Checked ? rnd.Next(filepaths_pics.Count()) : next_pic + 1;
                 if (next_pic > filepaths_pics.Count() - 1) next_pic = 0;
                 var filepath = filepaths_pics.ElementAt(next_pic);
-                pictureBox.ImageLocation = filepath;
                 this.Text = "Simple Image Viewer - " + filepath;
+                pictureBox.ImageLocation = filepath;
             }
             catch (Exception ex)
             {
@@ -188,7 +188,9 @@ namespace Image_Viewer
             try
             {
                 next_pic = (int)history_st.Pop();
-                pictureBox.ImageLocation = filepaths_pics.ElementAt(next_pic);
+                var filepath = filepaths_pics.ElementAt(next_pic);
+                this.Text = "Simple Image Viewer - " + filepath;
+                pictureBox.ImageLocation = filepath;
             }
             catch (Exception ex)
             {
