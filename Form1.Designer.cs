@@ -30,46 +30,45 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.btn_show_pics = new System.Windows.Forms.Button();
+            this.btn_load_pics = new System.Windows.Forms.Button();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.tb_path = new System.Windows.Forms.TextBox();
             this.btn_browse = new System.Windows.Forms.Button();
             this.cb_subfolder = new System.Windows.Forms.CheckBox();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.btn_next = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tb_filter = new System.Windows.Forms.TextBox();
             this.btn_back = new System.Windows.Forms.Button();
-            this.cb_random = new System.Windows.Forms.CheckBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.nud_diaShowTime = new System.Windows.Forms.NumericUpDown();
-            this.cb_diashow = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_info = new System.Windows.Forms.Button();
-            this.btn_rotate = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_cwd = new System.Windows.Forms.Button();
-            this.btn_pause = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.btn_play = new System.Windows.Forms.Button();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.btn_rotate = new System.Windows.Forms.Button();
+            this.cb_shuffle = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nud_diaShowTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // btn_show_pics
+            // btn_load_pics
             // 
-            this.btn_show_pics.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btn_show_pics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
-            this.btn_show_pics.FlatAppearance.BorderSize = 0;
-            this.btn_show_pics.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.btn_show_pics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_show_pics.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_show_pics.ForeColor = System.Drawing.Color.White;
-            this.btn_show_pics.Location = new System.Drawing.Point(482, 69);
-            this.btn_show_pics.Name = "btn_show_pics";
-            this.btn_show_pics.Size = new System.Drawing.Size(112, 23);
-            this.btn_show_pics.TabIndex = 0;
-            this.btn_show_pics.Text = "Bilder anzeigen";
-            this.btn_show_pics.UseVisualStyleBackColor = false;
-            this.btn_show_pics.Click += new System.EventHandler(this.btn_show_pics_Click);
+            this.btn_load_pics.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_load_pics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btn_load_pics.FlatAppearance.BorderSize = 0;
+            this.btn_load_pics.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btn_load_pics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_load_pics.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_load_pics.ForeColor = System.Drawing.Color.White;
+            this.btn_load_pics.Location = new System.Drawing.Point(482, 69);
+            this.btn_load_pics.Name = "btn_load_pics";
+            this.btn_load_pics.Size = new System.Drawing.Size(112, 23);
+            this.btn_load_pics.TabIndex = 0;
+            this.btn_load_pics.Text = "Bilder laden";
+            this.btn_load_pics.UseVisualStyleBackColor = false;
+            this.btn_load_pics.Click += new System.EventHandler(this.btn_load_pics_Click);
             // 
             // tb_path
             // 
@@ -116,23 +115,6 @@
             this.cb_subfolder.Text = "Unterordner einbeziehen";
             this.cb_subfolder.UseVisualStyleBackColor = true;
             // 
-            // pictureBox
-            // 
-            this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.pictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox.Location = new System.Drawing.Point(12, 109);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(760, 427);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox.TabIndex = 4;
-            this.pictureBox.TabStop = false;
-            this.pictureBox.WaitOnLoad = true;
-            this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
-            this.pictureBox.DoubleClick += new System.EventHandler(this.pictureBox_DoubleClick);
-            // 
             // btn_next
             // 
             this.btn_next.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -142,9 +124,9 @@
             this.btn_next.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_next.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_next.ForeColor = System.Drawing.Color.White;
-            this.btn_next.Location = new System.Drawing.Point(379, 552);
+            this.btn_next.Location = new System.Drawing.Point(394, 554);
             this.btn_next.Name = "btn_next";
-            this.btn_next.Size = new System.Drawing.Size(75, 34);
+            this.btn_next.Size = new System.Drawing.Size(75, 35);
             this.btn_next.TabIndex = 5;
             this.btn_next.Text = "Vor";
             this.btn_next.UseVisualStyleBackColor = false;
@@ -173,7 +155,7 @@
             this.tb_filter.Name = "tb_filter";
             this.tb_filter.Size = new System.Drawing.Size(263, 22);
             this.tb_filter.TabIndex = 14;
-            this.tb_filter.Text = "jpeg; jpg; png";
+            this.tb_filter.Text = "jpeg; jpg; png; gif; bmp";
             // 
             // btn_back
             // 
@@ -185,29 +167,13 @@
             this.btn_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_back.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_back.ForeColor = System.Drawing.Color.White;
-            this.btn_back.Location = new System.Drawing.Point(298, 552);
+            this.btn_back.Location = new System.Drawing.Point(313, 554);
             this.btn_back.Name = "btn_back";
-            this.btn_back.Size = new System.Drawing.Size(75, 34);
+            this.btn_back.Size = new System.Drawing.Size(75, 35);
             this.btn_back.TabIndex = 15;
             this.btn_back.Text = "Zurück";
             this.btn_back.UseVisualStyleBackColor = false;
             this.btn_back.Click += new System.EventHandler(this.btn_back_Click);
-            // 
-            // cb_random
-            // 
-            this.cb_random.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.cb_random.AutoSize = true;
-            this.cb_random.FlatAppearance.BorderSize = 0;
-            this.cb_random.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.cb_random.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.cb_random.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_random.ForeColor = System.Drawing.Color.White;
-            this.cb_random.Location = new System.Drawing.Point(302, 602);
-            this.cb_random.Name = "cb_random";
-            this.cb_random.Size = new System.Drawing.Size(66, 20);
-            this.cb_random.TabIndex = 16;
-            this.cb_random.Text = "Shuffle";
-            this.cb_random.UseVisualStyleBackColor = false;
             // 
             // timer1
             // 
@@ -221,7 +187,7 @@
             this.nud_diaShowTime.Enabled = false;
             this.nud_diaShowTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nud_diaShowTime.ForeColor = System.Drawing.Color.White;
-            this.nud_diaShowTime.Location = new System.Drawing.Point(380, 626);
+            this.nud_diaShowTime.Location = new System.Drawing.Point(323, 613);
             this.nud_diaShowTime.Maximum = new decimal(new int[] {
             300,
             0,
@@ -243,27 +209,14 @@
             0});
             this.nud_diaShowTime.ValueChanged += new System.EventHandler(this.nud_diaShowTime_ValueChanged);
             // 
-            // cb_diashow
-            // 
-            this.cb_diashow.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.cb_diashow.AutoSize = true;
-            this.cb_diashow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_diashow.ForeColor = System.Drawing.Color.White;
-            this.cb_diashow.Location = new System.Drawing.Point(302, 630);
-            this.cb_diashow.Name = "cb_diashow";
-            this.cb_diashow.Size = new System.Drawing.Size(78, 20);
-            this.cb_diashow.TabIndex = 19;
-            this.cb_diashow.Text = "Diashow";
-            this.cb_diashow.UseVisualStyleBackColor = true;
-            this.cb_diashow.CheckedChanged += new System.EventHandler(this.cb_diashow_CheckedChanged);
-            // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label3.AutoSize = true;
+            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(432, 630);
+            this.label3.ForeColor = System.Drawing.Color.Gray;
+            this.label3.Location = new System.Drawing.Point(370, 617);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 16);
             this.label3.TabIndex = 20;
@@ -279,31 +232,13 @@
             this.btn_info.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_info.ForeColor = System.Drawing.Color.White;
-            this.btn_info.Location = new System.Drawing.Point(3, 628);
+            this.btn_info.Location = new System.Drawing.Point(3, 630);
             this.btn_info.Name = "btn_info";
             this.btn_info.Size = new System.Drawing.Size(27, 28);
             this.btn_info.TabIndex = 21;
             this.btn_info.Text = "?";
             this.btn_info.UseVisualStyleBackColor = false;
             this.btn_info.Click += new System.EventHandler(this.btn_info_Click);
-            // 
-            // btn_rotate
-            // 
-            this.btn_rotate.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btn_rotate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
-            this.btn_rotate.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_rotate.BackgroundImage")));
-            this.btn_rotate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btn_rotate.FlatAppearance.BorderSize = 0;
-            this.btn_rotate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.btn_rotate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_rotate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_rotate.ForeColor = System.Drawing.Color.White;
-            this.btn_rotate.Location = new System.Drawing.Point(469, 552);
-            this.btn_rotate.Name = "btn_rotate";
-            this.btn_rotate.Size = new System.Drawing.Size(39, 34);
-            this.btn_rotate.TabIndex = 22;
-            this.btn_rotate.UseVisualStyleBackColor = false;
-            this.btn_rotate.Click += new System.EventHandler(this.btn_rotate_Click);
             // 
             // label2
             // 
@@ -334,24 +269,79 @@
             this.btn_cwd.UseVisualStyleBackColor = false;
             this.btn_cwd.Click += new System.EventHandler(this.btn_cwd_Click);
             // 
-            // btn_pause
+            // btn_play
             // 
-            this.btn_pause.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btn_pause.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
-            this.btn_pause.BackgroundImage = global::Image_Viewer.Properties.Resources.pause_logo;
-            this.btn_pause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btn_pause.Enabled = false;
-            this.btn_pause.FlatAppearance.BorderSize = 0;
-            this.btn_pause.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.btn_pause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_pause.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_pause.ForeColor = System.Drawing.Color.White;
-            this.btn_pause.Location = new System.Drawing.Point(523, 552);
-            this.btn_pause.Name = "btn_pause";
-            this.btn_pause.Size = new System.Drawing.Size(39, 34);
-            this.btn_pause.TabIndex = 25;
-            this.btn_pause.UseVisualStyleBackColor = false;
-            this.btn_pause.Click += new System.EventHandler(this.btn_pause_Click);
+            this.btn_play.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btn_play.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btn_play.BackgroundImage = global::Image_Viewer.Properties.Resources.play_logo;
+            this.btn_play.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_play.FlatAppearance.BorderSize = 0;
+            this.btn_play.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btn_play.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_play.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_play.ForeColor = System.Drawing.Color.White;
+            this.btn_play.Location = new System.Drawing.Point(415, 608);
+            this.btn_play.Name = "btn_play";
+            this.btn_play.Size = new System.Drawing.Size(40, 35);
+            this.btn_play.TabIndex = 25;
+            this.btn_play.UseVisualStyleBackColor = false;
+            this.btn_play.Click += new System.EventHandler(this.btn_play_Click);
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.pictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox.Location = new System.Drawing.Point(12, 109);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(760, 429);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 4;
+            this.pictureBox.TabStop = false;
+            this.pictureBox.WaitOnLoad = true;
+            this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
+            this.pictureBox.DoubleClick += new System.EventHandler(this.pictureBox_DoubleClick);
+            // 
+            // btn_rotate
+            // 
+            this.btn_rotate.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btn_rotate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.btn_rotate.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_rotate.BackgroundImage")));
+            this.btn_rotate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_rotate.FlatAppearance.BorderSize = 0;
+            this.btn_rotate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btn_rotate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_rotate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_rotate.ForeColor = System.Drawing.Color.White;
+            this.btn_rotate.Location = new System.Drawing.Point(484, 554);
+            this.btn_rotate.Name = "btn_rotate";
+            this.btn_rotate.Size = new System.Drawing.Size(40, 35);
+            this.btn_rotate.TabIndex = 22;
+            this.btn_rotate.UseVisualStyleBackColor = false;
+            this.btn_rotate.Click += new System.EventHandler(this.btn_rotate_Click);
+            // 
+            // cb_shuffle
+            // 
+            this.cb_shuffle.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.cb_shuffle.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cb_shuffle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.cb_shuffle.BackgroundImage = global::Image_Viewer.Properties.Resources.shuffle_logo;
+            this.cb_shuffle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.cb_shuffle.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cb_shuffle.FlatAppearance.BorderSize = 0;
+            this.cb_shuffle.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.cb_shuffle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cb_shuffle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_shuffle.ForeColor = System.Drawing.Color.White;
+            this.cb_shuffle.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.cb_shuffle.Location = new System.Drawing.Point(257, 554);
+            this.cb_shuffle.Name = "cb_shuffle";
+            this.cb_shuffle.Size = new System.Drawing.Size(40, 35);
+            this.cb_shuffle.TabIndex = 16;
+            this.cb_shuffle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cb_shuffle.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -359,8 +349,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(784, 659);
-            this.Controls.Add(this.btn_pause);
+            this.ClientSize = new System.Drawing.Size(784, 661);
+            this.Controls.Add(this.btn_play);
             this.Controls.Add(this.btn_cwd);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.label2);
@@ -369,25 +359,25 @@
             this.Controls.Add(this.tb_path);
             this.Controls.Add(this.nud_diaShowTime);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.cb_diashow);
-            this.Controls.Add(this.cb_random);
+            this.Controls.Add(this.cb_shuffle);
             this.Controls.Add(this.btn_back);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tb_filter);
             this.Controls.Add(this.btn_next);
             this.Controls.Add(this.cb_subfolder);
             this.Controls.Add(this.btn_browse);
-            this.Controls.Add(this.btn_show_pics);
+            this.Controls.Add(this.btn_load_pics);
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(444, 564);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Simple Image Viewer";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_diaShowTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -395,7 +385,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btn_show_pics;
+        private System.Windows.Forms.Button btn_load_pics;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.TextBox tb_path;
         private System.Windows.Forms.Button btn_browse;
@@ -405,16 +395,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tb_filter;
         private System.Windows.Forms.Button btn_back;
-        private System.Windows.Forms.CheckBox cb_random;
+        private System.Windows.Forms.CheckBox cb_shuffle;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.NumericUpDown nud_diaShowTime;
-        private System.Windows.Forms.CheckBox cb_diashow;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_info;
         private System.Windows.Forms.Button btn_rotate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_cwd;
-        private System.Windows.Forms.Button btn_pause;
+        private System.Windows.Forms.Button btn_play;
     }
 }
 

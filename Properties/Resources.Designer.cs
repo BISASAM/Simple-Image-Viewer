@@ -61,6 +61,16 @@ namespace Image_Viewer.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
+        /// </summary>
+        internal static System.Drawing.Icon logo {
+            get {
+                object obj = ResourceManager.GetObject("logo", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap pause_logo {
@@ -76,6 +86,26 @@ namespace Image_Viewer.Properties {
         internal static System.Drawing.Bitmap play_logo {
             get {
                 object obj = ResourceManager.GetObject("play_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rotate___white {
+            get {
+                object obj = ResourceManager.GetObject("rotate___white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap shuffle_logo {
+            get {
+                object obj = ResourceManager.GetObject("shuffle_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

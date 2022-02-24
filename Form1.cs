@@ -15,14 +15,14 @@ namespace Image_Viewer
 {
     public partial class Form1 : Form
     {
-        string ver = "v0.52";
+        string ver = "v0.61";
         Rectangle old_size;
         FormWindowState old_windowState;
         IEnumerable<string> filepaths_pics;
         Stack history_st = new Stack();
         Random rnd = new Random();
         bool isFullscreen = false;
-        bool isPause = false;
+        bool isPlaying = false;
         int next_pic = -1;
 
         public Form1()
@@ -50,7 +50,7 @@ namespace Image_Viewer
                 tb_path.Text = Path.GetDirectoryName(args[1]);
 
                 //load pics of folder
-                btn_show_pics_Click(sender, e);
+                btn_load_pics_Click(sender, e);
 
                 //make pictureBox show pic-file
                 try
@@ -97,7 +97,7 @@ namespace Image_Viewer
                             rotate_img(false);
                             break;
                         case Keys.Space:
-                            btn_pause_Click(null, null);
+                            btn_play_Click(null, null);
                             break;
                     }
                     return true;
@@ -117,7 +117,7 @@ namespace Image_Viewer
             }
         }
 
-        private void btn_show_pics_Click(object sender, EventArgs e)
+        private void btn_load_pics_Click(object sender, EventArgs e)
         {
             // Get all files
             string folder_path = tb_path.Text.TrimEnd('\\', '/');
@@ -141,7 +141,7 @@ namespace Image_Viewer
         private void btn_next_Click(object sender, EventArgs e)
         {   
             
-            if (cb_diashow.Checked && !isPause)
+            if (isPlaying)
             {
                 timer1.Stop();
                 timer1.Start();
@@ -153,7 +153,7 @@ namespace Image_Viewer
 
         private void btn_back_Click(object sender, EventArgs e)
         {
-            if (cb_diashow.Checked && !isPause)
+            if (isPlaying)
             {
                 timer1.Stop();
                 timer1.Start();
@@ -168,7 +168,7 @@ namespace Image_Viewer
             try
             {
                 history_st.Push(next_pic);
-                next_pic = cb_random.Checked ? rnd.Next(filepaths_pics.Count()) : next_pic + 1;
+                next_pic = cb_shuffle.Checked ? rnd.Next(filepaths_pics.Count()) : next_pic + 1;
                 if (next_pic > filepaths_pics.Count() - 1) next_pic = 0;
                 var filepath = filepaths_pics.ElementAt(next_pic);
                 pictureBox.ImageLocation = filepath;
@@ -239,29 +239,24 @@ namespace Image_Viewer
             pictureBox.Select();
         }
 
-        private void cb_diashow_CheckedChanged(object sender, EventArgs e)
+        private void btn_play_Click(object sender, EventArgs e)
         {
-            nud_diaShowTime.Enabled = cb_diashow.Checked;
-            btn_pause.Enabled = cb_diashow.Checked;
-            timer1.Interval = (int)nud_diaShowTime.Value*1000;
-            timer1.Enabled = cb_diashow.Checked;
-            if (!cb_diashow.Checked) {
-                isPause = false;
-                btn_pause.BackgroundImage = Image_Viewer.Properties.Resources.pause_logo;
-            }
-        }
+            if (filepaths_pics is null) return;
 
-        private void btn_pause_Click(object sender, EventArgs e)
-        {
-            if (cb_diashow.Checked)
+            isPlaying = !isPlaying;
+            btn_play.BackgroundImage = isPlaying ? Image_Viewer.Properties.Resources.pause_logo : Image_Viewer.Properties.Resources.play_logo;
+            nud_diaShowTime.Enabled = isPlaying;
+            label3.ForeColor = isPlaying ? Color.White : Color.Gray;
+            timer1.Interval = (int)nud_diaShowTime.Value * 1000;
+            timer1.Enabled = isPlaying;
+
+            if (isPlaying)
             {
-                isPause = !isPause;
-                btn_pause.BackgroundImage = isPause ? Image_Viewer.Properties.Resources.play_logo : Image_Viewer.Properties.Resources.pause_logo;
-                if (isPause)
-                {
-                    timer1.Stop();
-                }
-                else { timer1.Start(); }
+                timer1.Start(); 
+            }
+            else 
+            { 
+                timer1.Stop();
             }
         }
 
@@ -269,9 +264,6 @@ namespace Image_Viewer
         {
             timer1.Interval = (int)nud_diaShowTime.Value * 1000;
         }
-
-
-
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -305,6 +297,5 @@ namespace Image_Viewer
             MessageBox.Show(anleitung, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        
     }
 }
