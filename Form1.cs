@@ -16,7 +16,7 @@ namespace Image_Viewer
 {
     public partial class Form1 : Form
     {
-        string ver = "v0.63";
+        string ver = "v0.65";
         Rectangle old_size;
         FormWindowState old_windowState;
         IEnumerable<string> filepaths_pics;
@@ -90,7 +90,7 @@ namespace Image_Viewer
                 (keyData == Keys.Up) || (keyData == Keys.Down)
                 || keyData == Keys.Space)
             {
-                if (tb_path.Focused || tb_filter.Focused)
+                if (tb_path.Focused)
                 {
                     return base.ProcessCmdKey(ref msg, keyData);
                 }
@@ -133,13 +133,14 @@ namespace Image_Viewer
 
         private void btn_load_pics_Click(object sender, EventArgs e)
         {
-            // Get all files
             string folder_path = tb_path.Text.TrimEnd('\\', '/');
-            
+            history_st = new Stack();
+
             try
             {
                 next_pic = -1;
-                var file_types = tb_filter.Text.Split(';').Select(entry => entry.Trim()).Where(entry => entry != null).ToArray();
+                //var file_types = tb_filter.Text.Split(';').Select(entry => entry.Trim()).Where(entry => entry != null).ToArray();
+                string[] file_types = {"jpeg", "jpg", "png", "gif", "bmp"};
                 var recursive = cb_subfolder.Checked ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
                 filepaths_pics = Directory.EnumerateFiles(folder_path, "*.*", recursive).Where(file => file_types.Any(x => file.EndsWith(x, StringComparison.OrdinalIgnoreCase)));
                 show_next_pic();
@@ -322,7 +323,7 @@ namespace Image_Viewer
 
         private void btn_info_Click(object sender, EventArgs e)
         {
-            string anleitung = $"\n\nKann sehr große Ordner (~200GB) verarbeiten und Unterordner einbinden\n\nUrsprünglicher Usecase: Zufällig Bilder aus einem großen Ordner mit vielen Unterordnern in Diashow anzeigen \n\ncwd trägt das aktuelle Verzeichnis ein.\n\nFilter enthält Dateiendungen.\nMehrere Filter mit Semikolon trennen\n\nBild-Datei lässt sich in Windows auch durch \"Öffnen mit...\" öffnen\n\n\nTastenbelegung:\n\nPfeiltasten Links, Rechts: \tDurch die Bilder skippen\nPfeiltasten Hoch, Runter: \tDrehung Rechts, Links\nDoppelklick auf Bild: \tVollbild ein/aus\nLeertaste\t\t\tDiashow anhalten/fortsetzen\n\n\n\n{ver}\nVinc";
+            string anleitung = $"\n\nKann sehr große Ordner (~200GB) verarbeiten und Unterordner einbinden\n\nUrsprünglicher Usecase: Zufällig Bilder aus einem großen Ordner mit vielen Unterordnern in Diashow anzeigen\n\nUnterstütze Formate: jpeg, jpg, png, gif, bmp\n\ncwd trägt das aktuelle Verzeichnis ein.\n\nBild-Datei lässt sich in Windows auch durch \"Öffnen mit...\" öffnen\n\n\nTastenbelegung:\n\nPfeiltasten Links, Rechts: \tDurch die Bilder skippen\nPfeiltasten Hoch, Runter: \tDrehung Rechts, Links\nDoppelklick auf Bild: \tVollbild ein/aus\nLeertaste\t\t\tDiashow anhalten/fortsetzen\n\n\n\n{ver}\nVinc";
 
             MessageBox.Show(anleitung, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

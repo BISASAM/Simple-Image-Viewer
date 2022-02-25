@@ -36,8 +36,6 @@
             this.btn_browse = new System.Windows.Forms.Button();
             this.cb_subfolder = new System.Windows.Forms.CheckBox();
             this.btn_next = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tb_filter = new System.Windows.Forms.TextBox();
             this.btn_back = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.nud_diaShowTime = new System.Windows.Forms.NumericUpDown();
@@ -62,7 +60,7 @@
             this.btn_load_pics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_load_pics.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_load_pics.ForeColor = System.Drawing.Color.White;
-            this.btn_load_pics.Location = new System.Drawing.Point(482, 69);
+            this.btn_load_pics.Location = new System.Drawing.Point(482, 48);
             this.btn_load_pics.Name = "btn_load_pics";
             this.btn_load_pics.Size = new System.Drawing.Size(112, 23);
             this.btn_load_pics.TabIndex = 0;
@@ -124,38 +122,13 @@
             this.btn_next.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_next.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_next.ForeColor = System.Drawing.Color.White;
-            this.btn_next.Location = new System.Drawing.Point(394, 554);
+            this.btn_next.Location = new System.Drawing.Point(394, 547);
             this.btn_next.Name = "btn_next";
             this.btn_next.Size = new System.Drawing.Size(75, 35);
             this.btn_next.TabIndex = 5;
             this.btn_next.Text = "Vor";
             this.btn_next.UseVisualStyleBackColor = false;
             this.btn_next.Click += new System.EventHandler(this.btn_next_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(171, 72);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 16);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Filter";
-            // 
-            // tb_filter
-            // 
-            this.tb_filter.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tb_filter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.tb_filter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_filter.ForeColor = System.Drawing.Color.White;
-            this.tb_filter.Location = new System.Drawing.Point(213, 70);
-            this.tb_filter.Name = "tb_filter";
-            this.tb_filter.Size = new System.Drawing.Size(263, 22);
-            this.tb_filter.TabIndex = 14;
-            this.tb_filter.Text = "jpeg; jpg; png; gif; bmp";
             // 
             // btn_back
             // 
@@ -167,7 +140,7 @@
             this.btn_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_back.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_back.ForeColor = System.Drawing.Color.White;
-            this.btn_back.Location = new System.Drawing.Point(313, 554);
+            this.btn_back.Location = new System.Drawing.Point(313, 547);
             this.btn_back.Name = "btn_back";
             this.btn_back.Size = new System.Drawing.Size(75, 35);
             this.btn_back.TabIndex = 15;
@@ -187,7 +160,7 @@
             this.nud_diaShowTime.Enabled = false;
             this.nud_diaShowTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nud_diaShowTime.ForeColor = System.Drawing.Color.White;
-            this.nud_diaShowTime.Location = new System.Drawing.Point(323, 613);
+            this.nud_diaShowTime.Location = new System.Drawing.Point(323, 606);
             this.nud_diaShowTime.Maximum = new decimal(new int[] {
             300,
             0,
@@ -216,7 +189,7 @@
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Gray;
-            this.label3.Location = new System.Drawing.Point(370, 617);
+            this.label3.Location = new System.Drawing.Point(370, 610);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 16);
             this.label3.TabIndex = 20;
@@ -232,7 +205,7 @@
             this.btn_info.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_info.ForeColor = System.Drawing.Color.White;
-            this.btn_info.Location = new System.Drawing.Point(3, 630);
+            this.btn_info.Location = new System.Drawing.Point(3, 623);
             this.btn_info.Name = "btn_info";
             this.btn_info.Size = new System.Drawing.Size(27, 28);
             this.btn_info.TabIndex = 21;
@@ -280,7 +253,7 @@
             this.btn_play.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_play.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_play.ForeColor = System.Drawing.Color.White;
-            this.btn_play.Location = new System.Drawing.Point(415, 608);
+            this.btn_play.Location = new System.Drawing.Point(415, 601);
             this.btn_play.Name = "btn_play";
             this.btn_play.Size = new System.Drawing.Size(40, 35);
             this.btn_play.TabIndex = 25;
@@ -294,9 +267,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.pictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox.Location = new System.Drawing.Point(12, 109);
+            this.pictureBox.Location = new System.Drawing.Point(12, 83);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(760, 429);
+            this.pictureBox.Size = new System.Drawing.Size(760, 450);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 4;
             this.pictureBox.TabStop = false;
@@ -315,7 +288,7 @@
             this.btn_rotate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_rotate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_rotate.ForeColor = System.Drawing.Color.White;
-            this.btn_rotate.Location = new System.Drawing.Point(484, 554);
+            this.btn_rotate.Location = new System.Drawing.Point(484, 547);
             this.btn_rotate.Name = "btn_rotate";
             this.btn_rotate.Size = new System.Drawing.Size(40, 35);
             this.btn_rotate.TabIndex = 22;
@@ -336,7 +309,7 @@
             this.cb_shuffle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb_shuffle.ForeColor = System.Drawing.Color.White;
             this.cb_shuffle.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.cb_shuffle.Location = new System.Drawing.Point(257, 554);
+            this.cb_shuffle.Location = new System.Drawing.Point(257, 547);
             this.cb_shuffle.Name = "cb_shuffle";
             this.cb_shuffle.Size = new System.Drawing.Size(40, 35);
             this.cb_shuffle.TabIndex = 16;
@@ -349,7 +322,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(784, 661);
+            this.ClientSize = new System.Drawing.Size(784, 654);
             this.Controls.Add(this.btn_play);
             this.Controls.Add(this.btn_cwd);
             this.Controls.Add(this.pictureBox);
@@ -361,8 +334,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cb_shuffle);
             this.Controls.Add(this.btn_back);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.tb_filter);
             this.Controls.Add(this.btn_next);
             this.Controls.Add(this.cb_subfolder);
             this.Controls.Add(this.btn_browse);
@@ -392,8 +363,6 @@
         private System.Windows.Forms.CheckBox cb_subfolder;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Button btn_next;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tb_filter;
         private System.Windows.Forms.Button btn_back;
         private System.Windows.Forms.CheckBox cb_shuffle;
         private System.Windows.Forms.Timer timer1;
