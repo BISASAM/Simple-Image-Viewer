@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,6 +25,19 @@ namespace Image_Viewer
         bool isFullscreen = false;
         bool isPlaying = false;
         int next_pic = -1;
+
+        //prevent from turning off dispaly and going to sleep
+        [FlagsAttribute]
+        public enum EXECUTION_STATE : uint
+        {
+            ES_AWAYMODE_REQUIRED = 0x00000040,
+            ES_CONTINUOUS = 0x80000000,
+            ES_DISPLAY_REQUIRED = 0x00000002,
+            ES_SYSTEM_REQUIRED = 0x00000001
+        }
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern EXECUTION_STATE SetThreadExecutionState(EXECUTION_STATE esFlags);
 
         public Form1()
         {
@@ -165,6 +179,8 @@ namespace Image_Viewer
         {
             if (filepaths_pics is null) return;
 
+            PreventSleep();
+
             try
             {
                 history_st.Push(next_pic);
@@ -185,6 +201,8 @@ namespace Image_Viewer
         {
             if (filepaths_pics is null) return;
 
+            PreventSleep();
+
             try
             {
                 next_pic = (int)history_st.Pop();
@@ -197,6 +215,15 @@ namespace Image_Viewer
                 pictureBox.Image = pictureBox.ErrorImage;
                 return;
             }
+            //TextWriter txt = new StreamWriter("C:\\demo\\demo.txt");
+            //StringBuilder sb = new StringBuilder("Range 0 to " + filepaths_pics.Count().ToString() + "\n\n");
+            //var bla = filepaths_pics.Count();
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    sb.AppendLine(rnd.Next(bla).ToString());
+            //}
+            //txt.Write(sb.ToString());
+            //txt.Close();
         }
 
         private void pictureBox_DoubleClick(object sender, EventArgs e)
@@ -207,8 +234,9 @@ namespace Image_Viewer
                 {   // go Fullscreen
                     //KEEP THIS ORDER!!
                     old_windowState = this.WindowState;
-                    this.WindowState = FormWindowState.Maximized;
+                    this.WindowState = FormWindowState.Normal;  // needed to hide Taskbar, when comming from maximized
                     this.FormBorderStyle = FormBorderStyle.None;
+                    this.WindowState = FormWindowState.Maximized;
                     old_size = pictureBox.Bounds;
                     pictureBox.Dock = DockStyle.Fill;
                     pictureBox.BackColor = Color.Black;
@@ -220,8 +248,8 @@ namespace Image_Viewer
                     pictureBox.Dock = DockStyle.None;
                     pictureBox.Bounds = old_size;
                     pictureBox.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
-                    this.FormBorderStyle = FormBorderStyle.Sizable;
                     this.WindowState = old_windowState;
+                    this.FormBorderStyle = FormBorderStyle.Sizable;
                     pictureBox.BackColor = Color.FromArgb(34,34,34);
                     isFullscreen = false;
                 }
@@ -299,5 +327,10 @@ namespace Image_Viewer
             MessageBox.Show(anleitung, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void PreventSleep()
+        {
+            // Prevent Idle-to-Sleep (monitor not affected) (see note above)
+            SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS | EXECUTION_STATE.ES_SYSTEM_REQUIRED | EXECUTION_STATE.ES_DISPLAY_REQUIRED);
+        }
     }
 }
