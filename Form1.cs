@@ -8,20 +8,22 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tools;
 
 namespace Image_Viewer
 {
     public partial class Form1 : Form
     {
-        string ver = "v0.65";
+        string ver = "v0.66";
         Rectangle old_size;
         FormWindowState old_windowState;
-        IEnumerable<string> filepaths_pics;
+        string[] filepaths_pics;
         Stack history_st = new Stack();
-        Random rnd = new Random();
+        RndGen rnd = new RndGen();
         bool isFullscreen = false;
         bool isPlaying = false;
         int next_pic = -1;
@@ -65,6 +67,7 @@ namespace Image_Viewer
 
                 //load pics of folder
                 btn_load_pics_Click(sender, e);
+                next_pic = Array.IndexOf(filepaths_pics, args[1]);
 
                 //make pictureBox show pic-file
                 try
@@ -96,9 +99,9 @@ namespace Image_Viewer
                 }
                 else
                 {
-                    switch(keyData)
+                    switch (keyData)
                     {
-                        case Keys.Left: 
+                        case Keys.Left:
                             btn_back_Click(null, null);
                             break;
                         case Keys.Right:
@@ -140,9 +143,9 @@ namespace Image_Viewer
             {
                 next_pic = -1;
                 //var file_types = tb_filter.Text.Split(';').Select(entry => entry.Trim()).Where(entry => entry != null).ToArray();
-                string[] file_types = {"jpeg", "jpg", "png", "gif", "bmp"};
+                string[] file_types = { "jpeg", "jpg", "png", "gif", "bmp" };
                 var recursive = cb_subfolder.Checked ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
-                filepaths_pics = Directory.EnumerateFiles(folder_path, "*.*", recursive).Where(file => file_types.Any(x => file.EndsWith(x, StringComparison.OrdinalIgnoreCase)));
+                filepaths_pics = Directory.EnumerateFiles(folder_path, "*.*", recursive).Where(file => file_types.Any(x => file.EndsWith(x, StringComparison.OrdinalIgnoreCase))).ToArray();
                 show_next_pic();
                 pictureBox.Select();  // set focus away from textboxes
             }
@@ -154,8 +157,8 @@ namespace Image_Viewer
         }
 
         private void btn_next_Click(object sender, EventArgs e)
-        {   
-            
+        {
+
             if (isPlaying)
             {
                 timer1.Stop();
@@ -178,16 +181,16 @@ namespace Image_Viewer
 
         private void show_next_pic()
         {
-            if (filepaths_pics is null) return;
+            if (filepaths_pics.Length < 1) return;
 
             PreventSleep();
 
             try
             {
                 history_st.Push(next_pic);
-                next_pic = cb_shuffle.Checked ? rnd.Next(filepaths_pics.Count()) : next_pic + 1;
-                if (next_pic > filepaths_pics.Count() - 1) next_pic = 0;
-                var filepath = filepaths_pics.ElementAt(next_pic);
+                next_pic = cb_shuffle.Checked ? rnd.getInt(0, filepaths_pics.Length) : next_pic + 1;
+                if (next_pic > filepaths_pics.Length - 1) next_pic = 0;
+                var filepath = filepaths_pics[next_pic];
                 this.Text = "Simple Image Viewer - " + filepath;
                 pictureBox.ImageLocation = filepath;
             }
@@ -200,14 +203,14 @@ namespace Image_Viewer
 
         private void show_prev_pic()
         {
-            if (filepaths_pics is null) return;
+            if (filepaths_pics.Length < 1) return;
 
             PreventSleep();
 
             try
             {
                 next_pic = (int)history_st.Pop();
-                var filepath = filepaths_pics.ElementAt(next_pic);
+                var filepath = filepaths_pics[next_pic];
                 this.Text = "Simple Image Viewer - " + filepath;
                 pictureBox.ImageLocation = filepath;
             }
@@ -228,7 +231,7 @@ namespace Image_Viewer
         }
 
         private void pictureBox_DoubleClick(object sender, EventArgs e)
-        {   
+        {
             if (pictureBox.Image != null)
             {
                 if (!isFullscreen)
@@ -251,7 +254,7 @@ namespace Image_Viewer
                     pictureBox.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
                     this.WindowState = old_windowState;
                     this.FormBorderStyle = FormBorderStyle.Sizable;
-                    pictureBox.BackColor = Color.FromArgb(34,34,34);
+                    pictureBox.BackColor = Color.FromArgb(34, 34, 34);
                     isFullscreen = false;
                 }
             }
@@ -272,7 +275,7 @@ namespace Image_Viewer
 
         private void btn_play_Click(object sender, EventArgs e)
         {
-            if (filepaths_pics is null) return;
+            if (filepaths_pics.Length < 1) return;
 
             isPlaying = !isPlaying;
             btn_play.BackgroundImage = isPlaying ? Image_Viewer.Properties.Resources.pause_logo : Image_Viewer.Properties.Resources.play_logo;
@@ -283,10 +286,10 @@ namespace Image_Viewer
 
             if (isPlaying)
             {
-                timer1.Start(); 
+                timer1.Start();
             }
-            else 
-            { 
+            else
+            {
                 timer1.Stop();
             }
         }
@@ -298,7 +301,7 @@ namespace Image_Viewer
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            show_next_pic();  
+            show_next_pic();
         }
 
         private void btn_rotate_Click(object sender, EventArgs e)
@@ -317,7 +320,7 @@ namespace Image_Viewer
         }
 
         private void btn_cwd_Click(object sender, EventArgs e)
-        {   
+        {
             tb_path.Text = Directory.GetCurrentDirectory();
         }
 
@@ -332,6 +335,85 @@ namespace Image_Viewer
         {
             // Prevent Idle-to-Sleep (monitor not affected) (see note above)
             SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS | EXECUTION_STATE.ES_SYSTEM_REQUIRED | EXECUTION_STATE.ES_DISPLAY_REQUIRED);
+        }
+    }
+}
+
+
+namespace Tools
+{
+    public class RndGen
+    {
+        private RNGCryptoServiceProvider provider;
+
+        public RndGen()
+        {
+            provider = new RNGCryptoServiceProvider();
+        }
+
+        public int getInt(int min, int max)
+        {
+            byte[] byteArray = new byte[4];
+            provider.GetBytes(byteArray);
+
+            uint n = BitConverter.ToUInt32(byteArray, 0);  // uint: 0 to 4294967295 
+            int result = (int)(min + (double)n / 4294967295 * (max - min));
+            return result;
+        }
+    }
+
+    public class Queue
+    {
+        int[] list;
+        int addPointer;
+        int returnPointer;
+        int startPrev;
+        bool inPreview;
+
+        public Queue(int len)
+        {
+            list = new int[len];
+            addPointer = -1;
+            inPreview = false;
+        }
+
+        public void addItem(int item)
+        {
+            addPointer = (addPointer + 1) % list.Length;
+            list[addPointer] = item;
+        }
+        public int getPrev()
+        {   
+            if (!inPreview)
+            {
+                inPreview = true;
+                startPrev = addPointer;
+                returnPointer = startPrev;
+            }
+
+            returnPointer = (returnPointer - 1) % list.Length;
+            if (returnPointer == startPrev)
+            {
+                return -1;  // no more unseen items
+            }
+            return returnPointer;
+        }
+        public int getNext()
+        {
+            if (inPreview)
+            {
+                returnPointer = (returnPointer + 1) % list.Length;
+                if (returnPointer == startPrev)
+                {
+                    inPreview=false;
+                }
+                return returnPointer;
+
+            }
+            else 
+            { 
+                return -2; // at the start of the list
+            }
         }
     }
 }
