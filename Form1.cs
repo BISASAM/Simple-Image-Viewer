@@ -18,7 +18,7 @@ namespace Image_Viewer
 {
     public partial class Form1 : Form
     {
-        string ver = "v0.67";
+        string ver = "v0.68";
         Rectangle old_size;
         FormWindowState old_windowState;
         string[] filepaths_pics;
@@ -139,6 +139,7 @@ namespace Image_Viewer
         {
             string folder_path = tb_path.Text.TrimEnd('\\', '/');
             back_stack.Clear();
+            forw_stack.Clear();
 
             try
             {
@@ -337,7 +338,14 @@ namespace Image_Viewer
 
         private void btn_info_Click(object sender, EventArgs e)
         {
-            string anleitung = $"\n\nKann sehr große Ordner (~200GB) verarbeiten und Unterordner einbinden\n\nUrsprünglicher Usecase: Zufällig Bilder aus einem großen Ordner mit vielen Unterordnern in Diashow anzeigen\n\nUnterstütze Formate: jpeg, jpg, png, gif, bmp\n\ncwd trägt das aktuelle Verzeichnis ein.\n\nBild-Datei lässt sich in Windows auch durch \"Öffnen mit...\" öffnen\n\n\nTastenbelegung:\n\nPfeiltasten Links, Rechts: \tDurch die Bilder skippen\nPfeiltasten Hoch, Runter: \tDrehung Rechts, Links\nDoppelklick auf Bild: \tVollbild ein/aus\nLeertaste\t\t\tDiashow anhalten/fortsetzen\n\n\n\n{ver}\nVinc";
+            string anleitung = "\n\nKann sehr große Ordner (~200GB) verarbeiten und Unterordner einbinden" + 
+                               "\n\nUrsprünglicher Usecase: Zufällig Bilder aus einem großen Ordner mit vielen " +
+                               "Unterordnern in Diashow anzeigen\n\nUnterstütze Formate: jpeg, jpg, png, gif, bmp" + 
+                               "\n\ncwd trägt das aktuelle Verzeichnis ein.\n\nBild-Datei lässt sich in Windows " +
+                               "auch durch \"Öffnen mit...\" öffnen\n\n\nTastenbelegung:\n\nPfeiltasten Links, Rechts: " +
+                               "\tDurch die Bilder skippen\nPfeiltasten Hoch, Runter: \tDrehung Rechts, Links" +
+                               "\nDoppelklick auf Bild: \tVollbild ein/aus\nLeertaste\t\t\tDiashow anhalten/fortsetzen" +
+                               $"\nMaus-Control aktiv: \tLinksklick: Vor\n(über Bild) \t\tRechtsklick: Zurück\n\n\n\n{ver}\nVinc";
 
             MessageBox.Show(anleitung, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -346,6 +354,24 @@ namespace Image_Viewer
         {
             // Prevent Idle-to-Sleep (monitor not affected) (see note above)
             SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS | EXECUTION_STATE.ES_SYSTEM_REQUIRED | EXECUTION_STATE.ES_DISPLAY_REQUIRED);
+        }
+
+        private void pictureBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (cb_mouseControl.Checked)
+            {
+                switch (e.Button)
+                {
+                    case MouseButtons.Left:
+                        btn_next_Click(null, e);
+                        break;
+
+                    case MouseButtons.Right:
+                        btn_back_Click(null, e);
+                        break;
+                }
+            }
+            
         }
     }
 }

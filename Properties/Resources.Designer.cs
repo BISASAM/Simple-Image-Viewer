@@ -73,6 +73,16 @@ namespace Image_Viewer.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mouse_logo_small {
+            get {
+                object obj = ResourceManager.GetObject("mouse_logo_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pause_logo {
             get {
                 object obj = ResourceManager.GetObject("pause_logo", resourceCulture);

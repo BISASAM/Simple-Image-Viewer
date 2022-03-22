@@ -47,6 +47,7 @@
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.btn_rotate = new System.Windows.Forms.Button();
             this.cb_shuffle = new System.Windows.Forms.CheckBox();
+            this.cb_mouseControl = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nud_diaShowTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
@@ -176,7 +177,7 @@
             this.nud_diaShowTime.TabIndex = 18;
             this.nud_diaShowTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nud_diaShowTime.Value = new decimal(new int[] {
-            3,
+            5,
             0,
             0,
             0});
@@ -276,6 +277,7 @@
             this.pictureBox.WaitOnLoad = true;
             this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
             this.pictureBox.DoubleClick += new System.EventHandler(this.pictureBox_DoubleClick);
+            this.pictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
             // 
             // btn_rotate
             // 
@@ -316,6 +318,27 @@
             this.cb_shuffle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cb_shuffle.UseVisualStyleBackColor = false;
             // 
+            // cb_mouseControl
+            // 
+            this.cb_mouseControl.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.cb_mouseControl.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cb_mouseControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
+            this.cb_mouseControl.BackgroundImage = global::Image_Viewer.Properties.Resources.mouse_logo_small;
+            this.cb_mouseControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.cb_mouseControl.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cb_mouseControl.FlatAppearance.BorderSize = 0;
+            this.cb_mouseControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.cb_mouseControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cb_mouseControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_mouseControl.ForeColor = System.Drawing.Color.White;
+            this.cb_mouseControl.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.cb_mouseControl.Location = new System.Drawing.Point(208, 547);
+            this.cb_mouseControl.Name = "cb_mouseControl";
+            this.cb_mouseControl.Size = new System.Drawing.Size(40, 35);
+            this.cb_mouseControl.TabIndex = 27;
+            this.cb_mouseControl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cb_mouseControl.UseVisualStyleBackColor = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,6 +346,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(784, 654);
+            this.Controls.Add(this.cb_mouseControl);
             this.Controls.Add(this.btn_play);
             this.Controls.Add(this.btn_cwd);
             this.Controls.Add(this.pictureBox);
@@ -373,6 +397,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_cwd;
         private System.Windows.Forms.Button btn_play;
+        private System.Windows.Forms.CheckBox cb_mouseControl;
     }
 }
 
