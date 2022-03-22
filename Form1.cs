@@ -18,11 +18,12 @@ namespace Image_Viewer
 {
     public partial class Form1 : Form
     {
-        string ver = "v0.66";
+        string ver = "v0.67";
         Rectangle old_size;
         FormWindowState old_windowState;
         string[] filepaths_pics;
-        Stack history_st = new Stack();
+        Stack<int> back_stack = new Stack<int>();
+        Stack<int> forw_stack = new Stack<int>();
         RndGen rnd = new RndGen();
         bool isFullscreen = false;
         bool isPlaying = false;
@@ -137,7 +138,7 @@ namespace Image_Viewer
         private void btn_load_pics_Click(object sender, EventArgs e)
         {
             string folder_path = tb_path.Text.TrimEnd('\\', '/');
-            history_st = new Stack();
+            back_stack.Clear();
 
             try
             {
@@ -187,8 +188,16 @@ namespace Image_Viewer
 
             try
             {
-                history_st.Push(next_pic);
-                next_pic = cb_shuffle.Checked ? rnd.getInt(0, filepaths_pics.Length) : next_pic + 1;
+                back_stack.Push(next_pic);
+                if (forw_stack.Count == 0)
+                {   
+                    next_pic = cb_shuffle.Checked ? rnd.getInt(0, filepaths_pics.Length) : next_pic + 1;                   
+                }
+                else
+                {
+                    next_pic = forw_stack.Pop();
+                }
+
                 if (next_pic > filepaths_pics.Length - 1) next_pic = 0;
                 var filepath = filepaths_pics[next_pic];
                 this.Text = "Simple Image Viewer - " + filepath;
@@ -209,7 +218,9 @@ namespace Image_Viewer
 
             try
             {
-                next_pic = (int)history_st.Pop();
+                forw_stack.Push(next_pic);
+                next_pic = back_stack.Pop();
+
                 var filepath = filepaths_pics[next_pic];
                 this.Text = "Simple Image Viewer - " + filepath;
                 pictureBox.ImageLocation = filepath;
@@ -359,61 +370,6 @@ namespace Tools
             uint n = BitConverter.ToUInt32(byteArray, 0);  // uint: 0 to 4294967295 
             int result = (int)(min + (double)n / 4294967295 * (max - min));
             return result;
-        }
-    }
-
-    public class Queue
-    {
-        int[] list;
-        int addPointer;
-        int returnPointer;
-        int startPrev;
-        bool inPreview;
-
-        public Queue(int len)
-        {
-            list = new int[len];
-            addPointer = -1;
-            inPreview = false;
-        }
-
-        public void addItem(int item)
-        {
-            addPointer = (addPointer + 1) % list.Length;
-            list[addPointer] = item;
-        }
-        public int getPrev()
-        {   
-            if (!inPreview)
-            {
-                inPreview = true;
-                startPrev = addPointer;
-                returnPointer = startPrev;
-            }
-
-            returnPointer = (returnPointer - 1) % list.Length;
-            if (returnPointer == startPrev)
-            {
-                return -1;  // no more unseen items
-            }
-            return returnPointer;
-        }
-        public int getNext()
-        {
-            if (inPreview)
-            {
-                returnPointer = (returnPointer + 1) % list.Length;
-                if (returnPointer == startPrev)
-                {
-                    inPreview=false;
-                }
-                return returnPointer;
-
-            }
-            else 
-            { 
-                return -2; // at the start of the list
-            }
         }
     }
 }
