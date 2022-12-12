@@ -158,7 +158,6 @@
             this.nud_diaShowTime.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.nud_diaShowTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(56)))), ((int)(((byte)(56)))));
             this.nud_diaShowTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nud_diaShowTime.Enabled = false;
             this.nud_diaShowTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nud_diaShowTime.ForeColor = System.Drawing.Color.White;
             this.nud_diaShowTime.Location = new System.Drawing.Point(323, 606);
@@ -189,7 +188,7 @@
             this.label3.AutoSize = true;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Gray;
+            this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(370, 610);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 16);

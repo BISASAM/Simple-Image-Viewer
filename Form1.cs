@@ -18,10 +18,10 @@ namespace Image_Viewer
 {
     public partial class Form1 : Form
     {
-        string ver = "v0.68";
+        string ver = "v0.69";
         Rectangle old_size;
         FormWindowState old_windowState;
-        string[] filepaths_pics;
+        string[] filepaths_pics = {} ;
         Stack<int> back_stack = new Stack<int>();
         Stack<int> forw_stack = new Stack<int>();
         RndGen rnd = new RndGen();
@@ -291,8 +291,6 @@ namespace Image_Viewer
 
             isPlaying = !isPlaying;
             btn_play.BackgroundImage = isPlaying ? Image_Viewer.Properties.Resources.pause_logo : Image_Viewer.Properties.Resources.play_logo;
-            nud_diaShowTime.Enabled = isPlaying;
-            label3.ForeColor = isPlaying ? Color.White : Color.Gray;
             timer1.Interval = (int)nud_diaShowTime.Value * 1000;
             timer1.Enabled = isPlaying;
 
